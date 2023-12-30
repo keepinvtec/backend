@@ -1,0 +1,52 @@
+﻿@model InvoiceModel
+
+<script type="text/javascript">
+    function NewVINcode(temp) {
+        if (temp) {
+            document.getElementById('opt').innerHTML = temp;
+            document.getElementById('selector').style.display = 'none';
+            document.querySelectorAll('[id=attrib]').forEach(el => el.style.display = 'block');
+        }
+        else {
+            location.reload();
+        }
+    }
+</script>
+
+<style>
+    #attrib { display: none; }
+
+    input.input-validation-error {
+        border: 1px solid #b94a48;
+    }
+
+    #attrib.valid {
+        border: 1px solid #16a085;
+    }
+</style>
+
+<h2>Create invoice</h2>
+<form asp-action="create">
+    <div asp-validation-summary="ModelOnly"></div>
+    <p>
+        <input type="text" placeholder="Type VIN or select below" onchange="NewVINcode(this.value)">
+    </p>
+    <p>
+        <select name="invoice.CarVINcode" asp-items="Model.Cars" id="selector"><option id="opt">Select</option></select>
+    </p>
+    <p>
+        <input asp-for="invoice.Car.Brand" type="text" id="attrib" placeholder="Brand">
+        <span asp-validation-for="invoice.Car.Brand" />
+    </p>
+    <p>
+        <input asp-for="invoice.Car.YearOfProd" type="text" id="attrib" placeholder="YearOfProd">
+        <span asp-validation-for="invoice.Car.YearOfProd" />
+    </p>
+    <p>
+        <input type="submit" value="Add to database">
+    </p>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>

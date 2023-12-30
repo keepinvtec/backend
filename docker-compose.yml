@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+    SqlServerDb:
+        container_name: SqlServerContainer
+        image: mcr.microsoft.com/mssql/server:2017-latest
+        ports:
+            - 1433:1433
+        environment:
+            - ACCEPT_EULA=Y
+            - MSSQL_SA_PASSWORD=YourStrong@Passw0rd
+
+    AspNet:
+        container_name: AspNetContainer
+        image: application
+        ports:
+            - 81:8080
+        build:
+          context: .
+          dockerfile: Dockerfile
+        depends_on:
+            - SqlServerDb

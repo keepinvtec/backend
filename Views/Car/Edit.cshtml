@@ -1,0 +1,30 @@
+﻿@model Car
+
+<style>
+    input.input-validation-error {
+        border: 1px solid #b94a48;
+    }
+</style>
+
+<h2>Edit car</h2>
+<form asp-action="edit">
+    <div asp-validation-summary="All"></div>
+    <p>
+        <input asp-for="VINcode" type="text" readonly>
+    </p>
+    <p>
+        <input asp-for="Brand" type="text">
+    </p>
+    <p>
+        <input asp-for="Model" type="text">
+    </p>
+    <p>
+        <input asp-for="YearOfProd" type="text">
+    </p>
+    <p>
+        <input asp-for="Mileage" type="text">
+    </p>
+    <p>
+        <input type="submit" value="Save changes">
+    </p>
+</form>

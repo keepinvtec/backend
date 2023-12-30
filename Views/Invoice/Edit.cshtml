@@ -1,0 +1,15 @@
+﻿@model InvoiceModel
+
+<h2>Edit invoice</h2>
+<form asp-action="edit">
+    <p>
+        <label>ID</label><br />
+        <input type="text" asp-for="invoice.InvoiceId" readonly>
+    </p>
+    <p>
+        <select asp-for="invoice.CarVINcode" asp-items="Model.Cars"></select>
+    </p>
+    <p>
+        <input type="submit" value="Save changes">
+    </p>
+</form>
